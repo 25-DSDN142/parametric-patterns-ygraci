@@ -4,8 +4,8 @@ let rect_height = 30;
 
 
 function setup_wallpaper(pWallpaper) {
-  pWallpaper.output_mode(DEVELOP_GLYPH);
-  //pWallpaper.output_mode(GRID_WALLPAPER);
+  //pWallpaper.output_mode(DEVELOP_GLYPH);
+  pWallpaper.output_mode(GRID_WALLPAPER);
   
   pWallpaper.resolution(FIT_TO_SCREEN);
   pWallpaper.show_guide(true); //set this to false when you're ready to print
@@ -13,7 +13,7 @@ function setup_wallpaper(pWallpaper) {
   //Grid settings
   pWallpaper.grid_settings.cell_width  = 200;
   pWallpaper.grid_settings.cell_height = 200;
-  pWallpaper.grid_settings.row_offset  = 50;
+  pWallpaper.grid_settings.row_offset  = 0;
 }
 
 function wallpaper_background() {
@@ -21,5 +21,109 @@ function wallpaper_background() {
 }
 
 function my_symbol() { // do not rename this function. Treat this similarly to a Draw function
-  rect(40 ,40, rect_width, rect_height);
+  //setup - run once when the code is first starts
+
+  backDrop (0);
+  ocean (0); 
 }
+
+function backDrop() {
+  noStroke();
+
+
+//sand
+  let sand = color (242,210,169);
+  fill (sand);
+
+
+beginShape();
+  vertex (0,110);
+  vertex (200,110);
+  vertex (200,200);
+  vertex (0,200);
+endShape(CLOSE);
+
+
+//sky
+let sky = color (157,235,255);
+fill (sky);
+
+
+beginShape();
+  vertex (0,0);
+  vertex (200,0);
+  vertex (200,80);
+  vertex (0,80);
+endShape(CLOSE);
+
+
+//sun
+let sun = color (255,211,25);
+fill (sun);
+arc(99, 80, 80, 65, PI, 0);
+}
+
+
+function ocean(){
+
+
+//ocean
+let ocean = color (41,164,195);
+fill (ocean);
+
+
+beginShape();
+  vertex (0,80);
+  vertex (200,80);
+  vertex (200,120);
+  vertex (0,120);
+endShape(CLOSE);
+
+
+//1st waves
+beginShape();
+  curveVertex(0,110); //top left point
+  curveVertex(0,110); //makes line to next point
+  curveVertex(0,150); //1st left curve part of wave
+  curveVertex(25,165); //bottom of wave (left side)
+  curveVertex(60,140); //3rd right curve of wave
+  curveVertex(50,90); //top right point
+  curveVertex(50,90); //makes line to the whole thing
+endShape();
+
+
+//2nd wave arc(60, 110, 100, 140, 0, PI);
+beginShape();
+  curveVertex(40,110); //top left point
+  curveVertex(40,110); //makes line to next point
+  curveVertex(40,150); //1st left curve part of wave
+  curveVertex(80,175); //bottom of wave (left side)
+  curveVertex(115,150); //3rd right curve of wave
+  curveVertex(115,110); //top right point
+  curveVertex(115,110); //makes line to the whole thing
+endShape();
+
+
+//3rd wave arc(120, 110, 140, 140, 0, PI);
+beginShape();
+  curveVertex(100,110); //top left point
+  curveVertex(100,110); //makes line to next point
+  curveVertex(115,150); //1st left curve part of wave
+  curveVertex(145,165); //bottom of wave (left side)
+  curveVertex(180,150); //3rd right curve of wave
+  curveVertex(200,110); //top right point
+  curveVertex(200,110); //makes line to the whole thing
+endShape();
+
+
+//4th wave arc(200, 90, 160, 140, 0, PI);
+beginShape();
+  curveVertex(175,110); //top left point
+  curveVertex(175,110); //makes line to next point
+  curveVertex(200,150); //1st left curve part of wave
+  curveVertex(200,140); //bottom of wave (left side)
+  curveVertex(200,110); //top right point
+  curveVertex(200,110); //makes line to the whole thing
+endShape(); 
+}
+
