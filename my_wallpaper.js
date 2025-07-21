@@ -1,11 +1,11 @@
 //your parameter variables go here!
-let rect_width  = 20;
-let rect_height = 30;
+let backDropLeft = 0 
+let backDropRight = 200
 
 
 function setup_wallpaper(pWallpaper) {
-  //pWallpaper.output_mode(DEVELOP_GLYPH);
-  pWallpaper.output_mode(GRID_WALLPAPER);
+  pWallpaper.output_mode(DEVELOP_GLYPH);
+  //pWallpaper.output_mode(GRID_WALLPAPER);
   
   pWallpaper.resolution(FIT_TO_SCREEN);
   pWallpaper.show_guide(true); //set this to false when you're ready to print
@@ -23,62 +23,56 @@ function wallpaper_background() {
 function my_symbol() { // do not rename this function. Treat this similarly to a Draw function
   //setup - run once when the code is first starts
 
+
   backDrop (0);
-  ocean (0); 
+  waves (0);
 }
 
 function backDrop() {
   noStroke();
 
-
 //sand
-  let sand = color (242,210,169);
+let sand = color (242,210,169);
   fill (sand);
-
-
 beginShape();
-  vertex (0,110);
-  vertex (200,110);
-  vertex (200,200);
-  vertex (0,200);
+  vertex (backDropLeft,110);//top left 
+  vertex (backDropRight,110);//top right
+  vertex (backDropRight,200);//bottom right
+  vertex (backDropLeft,200);//bottom left
 endShape(CLOSE);
 
-
 //sky
-let sky = color (157,235,255);
+  var sky = color (157,235,255);
 fill (sky);
 
-
 beginShape();
-  vertex (0,0);
-  vertex (200,0);
-  vertex (200,80);
-  vertex (0,80);
+  vertex (backDropLeft,0);//top left 
+  vertex (backDropRight,0);//top right
+  vertex (backDropRight,80);//bottom right
+  vertex (backDropLeft,80);//bottom left
 endShape(CLOSE);
 
 
 //sun
-let sun = color (255,211,25);
+  var sun = color (255,211,25);
 fill (sun);
 arc(99, 80, 80, 65, PI, 0);
+
+//ocean
+  var ocean = color (41,164,195);
+fill (ocean);
+
+//middle/top of the ocean
+beginShape();
+  vertex (backDropLeft,80);//top left 
+  vertex (backDropRight,80);//top right
+  vertex (backDropRight,120);//bottom right
+  vertex (backDropLeft,120);//bottom left
+endShape(CLOSE);
 }
 
 
-function ocean(){
-
-
-//ocean
-let ocean = color (41,164,195);
-fill (ocean);
-
-
-beginShape();
-  vertex (0,80);
-  vertex (200,80);
-  vertex (200,120);
-  vertex (0,120);
-endShape(CLOSE);
-
+function waves(){
 
 //1st waves
 beginShape();
@@ -91,7 +85,6 @@ beginShape();
   curveVertex(50,90); //makes line to the whole thing
 endShape();
 
-
 //2nd wave arc(60, 110, 100, 140, 0, PI);
 beginShape();
   curveVertex(40,110); //top left point
@@ -103,7 +96,6 @@ beginShape();
   curveVertex(115,110); //makes line to the whole thing
 endShape();
 
-
 //3rd wave arc(120, 110, 140, 140, 0, PI);
 beginShape();
   curveVertex(100,110); //top left point
@@ -114,7 +106,6 @@ beginShape();
   curveVertex(200,110); //top right point
   curveVertex(200,110); //makes line to the whole thing
 endShape();
-
 
 //4th wave arc(200, 90, 160, 140, 0, PI);
 beginShape();
