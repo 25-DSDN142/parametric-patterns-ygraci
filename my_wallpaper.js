@@ -1,6 +1,10 @@
 //your parameter variables go here!
-let backDropLeft = 0 
-let backDropRight = 200
+let backDropLeft = 0;
+let backDropTop = 0;
+let backDropRight = 200;
+let backDropBottom = 200;
+let Birdx=80
+let Birdy=10
 
 
 function setup_wallpaper(pWallpaper) {
@@ -23,9 +27,20 @@ function wallpaper_background() {
 function my_symbol() { // do not rename this function. Treat this similarly to a Draw function
   //setup - run once when the code is first starts
 
-
   backDrop (0);
   waves (0);
+  bird(0);
+}
+
+function bird () {
+  angleMode(DEGREES);
+fill (0);
+
+//left wing
+  arc (Birdx+23, Birdy+9.5, 30, 19, 290, 350, CHORD);
+
+//right wing
+  arc (Birdx+50, Birdy+7, 29, 17, 180, 230, CHORD);
 }
 
 function backDrop() {
@@ -35,10 +50,10 @@ function backDrop() {
 let sand = color (242,210,169);
   fill (sand);
 beginShape();
-  vertex (backDropLeft,110);//top left 
-  vertex (backDropRight,110);//top right
-  vertex (backDropRight,200);//bottom right
-  vertex (backDropLeft,200);//bottom left
+  vertex (backDropLeft, backDropTop+110);//top left 
+  vertex (backDropRight,backDropTop+110);//top right
+  vertex (backDropRight,backDropBottom);//bottom right
+  vertex (backDropLeft,backDropBottom);//bottom left
 endShape(CLOSE);
 
 //sky
@@ -46,17 +61,18 @@ endShape(CLOSE);
 fill (sky);
 
 beginShape();
-  vertex (backDropLeft,0);//top left 
-  vertex (backDropRight,0);//top right
-  vertex (backDropRight,80);//bottom right
-  vertex (backDropLeft,80);//bottom left
+  vertex (backDropLeft,backDropTop);//top left 
+  vertex (backDropRight,backDropTop);//top right
+  vertex (backDropRight,backDropBottom-120);//bottom right
+  vertex (backDropLeft,backDropBottom-120);//bottom left
 endShape(CLOSE);
 
 
 //sun
+angleMode(DEGREES);
   var sun = color (255,211,25);
 fill (sun);
-arc(99, 80, 80, 65, PI, 0);
+arc(99, 80, 80, 65, 180, 360);
 
 //ocean
   var ocean = color (41,164,195);
@@ -64,10 +80,10 @@ fill (ocean);
 
 //middle/top of the ocean
 beginShape();
-  vertex (backDropLeft,80);//top left 
-  vertex (backDropRight,80);//top right
-  vertex (backDropRight,120);//bottom right
-  vertex (backDropLeft,120);//bottom left
+  vertex (backDropLeft,backDropTop+80);//top left 
+  vertex (backDropRight,backDropTop+80);//top right
+  vertex (backDropRight,backDropBottom-80);//bottom right
+  vertex (backDropLeft,backDropBottom-80);//bottom left
 endShape(CLOSE);
 }
 
