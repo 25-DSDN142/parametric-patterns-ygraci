@@ -3,8 +3,6 @@ let backDropLeft = 0;
 let backDropTop = 0;
 let backDropRight = 200;
 let backDropBottom = 200;
-let Birdx=80
-let Birdy=10
 
 
 function setup_wallpaper(pWallpaper) {
@@ -29,18 +27,23 @@ function my_symbol() { // do not rename this function. Treat this similarly to a
 
   backDrop (0);
   waves (0);
-  bird(0);
+  bird(90, 10);
+  bird(20, 30);
+  bird(100, 25);
 }
 
-function bird () {
+function bird (birdX, birdY) {
   angleMode(DEGREES);
 fill (0);
 
 //left wing
-  arc (Birdx+23, Birdy+9.5, 30, 19, 290, 350, CHORD);
+  arc (birdX+23, birdY+9.5, 30, 19, 290, 350, CHORD);
+
+//middle part 
+  ellipse (birdX+36.4, birdY+5.5, 2.1, 2.2);
 
 //right wing
-  arc (Birdx+50, Birdy+7, 29, 17, 180, 230, CHORD);
+  arc (birdX+50, birdY+7, 29, 17, 180, 230, CHORD);
 }
 
 function backDrop() {
