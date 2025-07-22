@@ -30,6 +30,7 @@ function my_symbol() { // do not rename this function. Treat this similarly to a
   bird(90, 10);
   bird(20, 30);
   bird(100, 25);
+  sandSpecks(500);
 }
 
 function bird (birdX, birdY) {
@@ -90,7 +91,6 @@ beginShape();
 endShape(CLOSE);
 }
 
-
 function waves(){
 
 //1st waves
@@ -137,3 +137,13 @@ beginShape();
 endShape(); 
 }
 
+function sandSpecks(count){
+  fill (0);
+  for (let i = 0; i < count; i++) {
+    let x = random(2);
+    let y = random(6);
+    let w = random(0.2, 1.2);
+    let h = random(0.2, 1.2);
+    ellipse(50, 190, 0.4, 0.6);
+  }
+}
