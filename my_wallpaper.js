@@ -18,20 +18,41 @@ function setup_wallpaper(pWallpaper) {
   pWallpaper.grid_settings.row_offset  = 0;
 }
 
+
 function wallpaper_background() {
   background(240, 255, 240); //light honeydew green colour
 }
 
+
 function my_symbol() { // do not rename this function. Treat this similarly to a Draw function
   //setup - run once when the code is first starts
-
+ 
+  sandBackDrop (0);//is inback of sandSpecks so the sandSpecks can be seen
+  sandSpecks(50000); //50000 there is a total of 50000 ellipse in the 200x200 area 
   backDrop (0);
   waves (0);
   bird(90, 10);
   bird(20, 30);
   bird(100, 25);
-  sandSpecks(500);
 }
+
+
+function sandSpecks(count){
+  fill (0)
+  for (let i = 0; i < count; i++) { 
+    //i=0 means it starts with 0
+    //i<count means it will have that many shapes 
+    let x = random(width);
+    let y = random(height);
+    //lets the placement be random 
+    let w = random(0.2, .5);
+    let h = random(0.2, .9);
+    //lets the size be random
+    ellipse(x, y, w, h);
+    //draws the ellipse using the x, y, w, h
+  }
+}
+
 
 function bird (birdX, birdY) {
   angleMode(DEGREES);
@@ -46,11 +67,10 @@ fill (0);
 //right wing
   arc (birdX+50, birdY+7, 29, 17, 180, 230, CHORD);
 }
+  
 
-function backDrop() {
-  noStroke();
-
-//sand
+function sandBackDrop () {
+noStroke();
 let sand = color (242,210,169);
   fill (sand);
 beginShape();
@@ -59,7 +79,10 @@ beginShape();
   vertex (backDropRight,backDropBottom);//bottom right
   vertex (backDropLeft,backDropBottom);//bottom left
 endShape(CLOSE);
+}
 
+
+function backDrop () {
 //sky
   var sky = color (157,235,255);
 fill (sky);
@@ -90,6 +113,7 @@ beginShape();
   vertex (backDropLeft,backDropBottom-80);//bottom left
 endShape(CLOSE);
 }
+
 
 function waves(){
 
@@ -135,15 +159,4 @@ beginShape();
   curveVertex(200,110); //top right point
   curveVertex(200,110); //makes line to the whole thing
 endShape(); 
-}
-
-function sandSpecks(count){
-  fill (0);
-  for (let i = 0; i < count; i++) {
-    let x = random(2);
-    let y = random(6);
-    let w = random(0.2, 1.2);
-    let h = random(0.2, 1.2);
-    ellipse(50, 190, 0.4, 0.6);
-  }
 }
