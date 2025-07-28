@@ -1,9 +1,14 @@
+
+
+
 //your parameter variables go here!
 let backDropLeft = 0;
 let backDropTop = 0;
 let backDropRight = 200;
 let backDropBottom = 200;
-
+let birdFlyX = 20;
+let birdFlyY = 10;
+let colourChanger = 1;
 
 function setup_wallpaper(pWallpaper) {
   pWallpaper.output_mode(DEVELOP_GLYPH);
@@ -18,7 +23,6 @@ function setup_wallpaper(pWallpaper) {
   pWallpaper.grid_settings.row_offset  = 0;
 }
 
-
 function wallpaper_background() {
   background(240, 255, 240); //light honeydew green colour
 }
@@ -26,17 +30,18 @@ function wallpaper_background() {
 
 function my_symbol() { // do not rename this function. Treat this similarly to a Draw function
   //setup - run once when the code is first starts
- 
+
+
   sandBackDrop (0);//is inback of sandSpecks so the sandSpecks can be seen
-  sandSpecks(50000); //50000 there is a total of 50000 ellipse in the 200x200 area 
+  //can change the arangement of the sand each time you refresh 
+  sandSpecks(10000); // 10000 there is a total of 50000 ellipse in the 200x200 area 
   backDrop (0);
   waves (0);
-  bird(90, 10);
-  bird(20, 30);
-  bird(100, 25);
+  bird(birdFlyX+70,birdFlyY+2);
+  bird(birdFlyX+1,birdFlyY+20);
+  bird(birdFlyX+80,birdFlyY+15);
+
 }
-
-
 function sandSpecks(count){
   fill (0)
   for (let i = 0; i < count; i++) { 
@@ -84,8 +89,17 @@ endShape(CLOSE);
 
 function backDrop () {
 //sky
-  var sky = color (157,235,255);
-fill (sky);
+  let skyDay = color (157,235,255);
+  let skyNight = color (46,68,130);
+
+  if (colourChanger == 0) {
+    fill (skyDay);
+  }
+  else{
+    fill (skyNight);
+  }
+  
+// fill (sky);
 
 beginShape();
   vertex (backDropLeft,backDropTop);//top left 
@@ -102,9 +116,15 @@ fill (sun);
 arc(99, 80, 80, 65, 180, 360);
 
 //ocean
-  var ocean = color (41,164,195);
-fill (ocean);
+let oceanDay = color (41,164,195);
+  let oceanNight = color (57,80,97);
 
+  if (colourChanger == 0) {
+    fill (oceanDay);
+  }
+  else{
+    fill (oceanNight);
+  }
 //middle/top of the ocean
 beginShape();
   vertex (backDropLeft,backDropTop+80);//top left 
