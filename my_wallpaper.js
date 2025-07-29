@@ -1,14 +1,11 @@
 
-
-
 //your parameter variables go here!
-let backDropLeft = 0;
-let backDropTop = 0;
-let backDropRight = 200;
-let backDropBottom = 200;
-let birdFlyX = 20;
-let birdFlyY = 10;
-let colourChanger = 1;
+let birdFlyX = 20; //moves all birds left or right
+let birdFlyY = 10; //moves all birds up or down
+let sunRiseY = 40; //lets sun rise or lower
+let sunSize =10
+let sandNumber = 10000; //creates less or more sand 
+let dayNight = 200; //lets it be night beach or day beach
 
 function setup_wallpaper(pWallpaper) {
   pWallpaper.output_mode(DEVELOP_GLYPH);
@@ -31,15 +28,17 @@ function wallpaper_background() {
 function my_symbol() { // do not rename this function. Treat this similarly to a Draw function
   //setup - run once when the code is first starts
 
-
   sandBackDrop (0);//is inback of sandSpecks so the sandSpecks can be seen
   //can change the arangement of the sand each time you refresh 
-  sandSpecks(10000); // 10000 there is a total of 50000 ellipse in the 200x200 area 
-  backDrop (0);
+  sandSpecks(sandNumber+400); // 10000 there is a total of 50000 ellipse in the 200x200 area 
+  sky (0);
+  sun (99,sunRiseY+40, sunSize+80);
+  ocean (0);
   waves (0);
   bird(birdFlyX+70,birdFlyY+2);
   bird(birdFlyX+1,birdFlyY+20);
   bird(birdFlyX+80,birdFlyY+15);
+  
 
 }
 function sandSpecks(count){
@@ -60,8 +59,15 @@ function sandSpecks(count){
 
 
 function bird (birdX, birdY) {
+ let skyNight = color (46,68,130);
+
   angleMode(DEGREES);
-fill (0);
+ if (dayNight > 100) {
+    fill (0);
+  }
+  else{
+    fill (skyNight);
+  }
 
 //left wing
   arc (birdX+23, birdY+9.5, 30, 19, 290, 350, CHORD);
@@ -79,20 +85,20 @@ noStroke();
 let sand = color (242,210,169);
   fill (sand);
 beginShape();
-  vertex (backDropLeft, backDropTop+110);//top left 
-  vertex (backDropRight,backDropTop+110);//top right
-  vertex (backDropRight,backDropBottom);//bottom right
-  vertex (backDropLeft,backDropBottom);//bottom left
+  vertex (0, 110);//top left 
+  vertex (200,110);//top right
+  vertex (200,200);//bottom right
+  vertex (0,200);//bottom left
 endShape(CLOSE);
 }
 
 
-function backDrop () {
+function sky () {
 //sky
   let skyDay = color (157,235,255);
   let skyNight = color (46,68,130);
 
-  if (colourChanger == 0) {
+  if (dayNight > 100) {
     fill (skyDay);
   }
   else{
@@ -100,42 +106,52 @@ function backDrop () {
   }
   
 // fill (sky);
-
 beginShape();
-  vertex (backDropLeft,backDropTop);//top left 
-  vertex (backDropRight,backDropTop);//top right
-  vertex (backDropRight,backDropBottom-120);//bottom right
-  vertex (backDropLeft,backDropBottom-120);//bottom left
+  vertex (0,0);//top left 
+  vertex (200,0);//top right
+  vertex (200,200-120);//bottom right
+  vertex (0,200-120);//bottom left
 endShape(CLOSE);
 
+}
 
-//sun
-angleMode(DEGREES);
-  var sun = color (255,211,25);
-fill (sun);
-arc(99, 80, 80, 65, 180, 360);
-
-//ocean
+function ocean () {
 let oceanDay = color (41,164,195);
   let oceanNight = color (57,80,97);
 
-  if (colourChanger == 0) {
+  if (dayNight > 100) {
     fill (oceanDay);
   }
   else{
     fill (oceanNight);
   }
 //middle/top of the ocean
+
 beginShape();
-  vertex (backDropLeft,backDropTop+80);//top left 
-  vertex (backDropRight,backDropTop+80);//top right
-  vertex (backDropRight,backDropBottom-80);//bottom right
-  vertex (backDropLeft,backDropBottom-80);//bottom left
+  vertex (0,+80);//top left 
+  vertex (200,80);//top right
+  vertex (200,200-80);//bottom right
+  vertex (0,200-80);//bottom left
 endShape(CLOSE);
 }
 
+function sun (sunX, sunY, sunW) {
+  angleMode(DEGREES);
+  var sun = color (255,211,25);
+fill (sun);
+arc(sunX, sunY, sunW, 65, 180, 360);
+}
 
 function waves(){
+  let wavesDay = color (41,164,195);
+  let wavesNight = color (57,80,97);
+
+  if (dayNight > 100) {
+    fill (wavesDay);
+  }
+  else{
+    fill (wavesNight);
+  }
 
 //1st waves
 beginShape();
