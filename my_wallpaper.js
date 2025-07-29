@@ -3,9 +3,11 @@
 let birdFlyX = 20; //moves all birds left or right
 let birdFlyY = 10; //moves all birds up or down
 let sunRiseY = 40; //lets sun rise or lower
-let sunSize =10
+let sunSize = 10;
 let sandNumber = 10000; //creates less or more sand 
 let dayNight = 200; //lets it be night beach or day beach
+let sandWidth = .5 //changes the width of the sand
+let sandHight =.5 //changes the hight of the sand
 
 function setup_wallpaper(pWallpaper) {
   pWallpaper.output_mode(DEVELOP_GLYPH);
@@ -32,7 +34,7 @@ function my_symbol() { // do not rename this function. Treat this similarly to a
   //can change the arangement of the sand each time you refresh 
   sandSpecks(sandNumber+400); // 10000 there is a total of 50000 ellipse in the 200x200 area 
   sky (0);
-  sun (99,sunRiseY+40, sunSize+80);
+  sun (99,sunRiseY+40,sunSize+80);
   ocean (0);
   waves (0);
   bird(birdFlyX+70,birdFlyY+2);
@@ -47,11 +49,9 @@ function sandSpecks(count){
     //i=0 means it starts with 0
     //i<count means it will have that many shapes 
     let x = random(width);
-    let y = random(height);
-    //lets the placement be random 
-    let w = random(0.2, .5);
-    let h = random(0.2, .9);
-    //lets the size be random
+    let y = random(height); 
+    let w = sandWidth+.2;
+    let h = sandHight+.4;
     ellipse(x, y, w, h);
     //draws the ellipse using the x, y, w, h
   }
